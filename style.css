@@ -35,7 +35,7 @@ canvas {
 #mainHeading {
   text-align: center;
   width: 100%;
-  position: relative;
+  position: absolute;
   color: white;
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -62,3 +62,6 @@ canvas {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
 }
+
+
+

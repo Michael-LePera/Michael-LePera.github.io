@@ -15,6 +15,7 @@
     "vite": "^2.9.9"
   },
   "dependencies": {
+    "animejs": "^3.2.1",
     "three": "^0.141.0"
   }
 }

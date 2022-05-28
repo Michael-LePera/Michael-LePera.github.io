@@ -1,6 +1,7 @@
 import './style.css'
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+import anime from 'animejs/lib/anime.es.js';
 import spaceimg from "/assets/space.jpg" 
 
 const scene = new THREE.Scene();
@@ -32,18 +33,9 @@ var plgeometry;
 
 function updateSize() {
   renderer.setSize( window.innerWidth, window.innerHeight );
-  plgeometry = new THREE.SphereGeometry( window.innerWidth / 1, 64);
+  geometry = new THREE.SphereGeometry( window.innerWidth / 1, 64);
   sphere = new THREE.Mesh( plgeometry, plmaterial );
 }
-
-
-const parallaxMod = 0.001
-function onMouseMove(event) {
-  sphere.rotation.y = (parallaxMod * (event.clientX - window.innerWidth / 2)) + (Math.PI / 2);
-  sphere.rotation.x = (parallaxMod * (event.clientY - window.innerHeight / 2));
-}
-
-
 
 const plmaterial = new THREE.MeshBasicMaterial( {color: 0xFFFFFF, side: THREE.DoubleSide, map: spaceTexture} );
 plgeometry = new THREE.SphereGeometry( window.innerWidth / 12, 128);
@@ -52,7 +44,15 @@ scene.add( sphere );
 sphere.position.set(0, 0, 0);
 sphere.rotateY(Math.PI / 2);
 
-  
+
+
+const parallaxMod = 0.001
+var mainText = document.getElementById("body");
+function onMouseMove(event) {
+  sphere.rotation.y = (parallaxMod * (event.clientX - window.innerWidth / 2)) + (Math.PI / 2);
+  sphere.rotation.x = (parallaxMod * (event.clientY - window.innerHeight / 2));
+
+}
 
 const pointLight = new THREE.PointLight(0xFFFFFF);
 pointLight.position.set(5, 5, 5)
@@ -128,3 +128,4 @@ function animate(){
 
 animate()
 console.log("yo");
+
