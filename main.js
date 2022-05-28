@@ -41,7 +41,6 @@ const parallaxMod = 0.001
 function onMouseMove(event) {
   sphere.rotation.y = (parallaxMod * (event.clientX - window.innerWidth / 2)) + (Math.PI / 2);
   sphere.rotation.x = (parallaxMod * (event.clientY - window.innerHeight / 2));
-  console.log(window.innerWidth / 2)
 }
 
 
@@ -61,16 +60,16 @@ pointLight.position.set(5, 5, 5)
 const ambientLight = new THREE.AmbientLight(0xFFFFFF);
 scene.add(pointLight, ambientLight)
 
-const lightHelper = new THREE.PointLightHelper(pointLight)
-const gridHelper = new THREE.GridHelper(200, 50);
-scene.add(lightHelper, gridHelper)
+//const lightHelper = new THREE.PointLightHelper(pointLight)
+//const gridHelper = new THREE.GridHelper(200, 50);
+//scene.add(lightHelper, gridHelper)
 
 
 
 
 
 
-const controls = new OrbitControls(camera, renderer.domElement);
+//const controls = new OrbitControls(camera, renderer.domElement);
 
 
 function addStar(){
@@ -120,7 +119,7 @@ function animate(){
   sphere.rotation.y += 0.0000;
   sphere.rotation.z += 0.0000;
 
-  controls.update();
+  //controls.update();
   //console.log(camera.position.z)
   renderer.render(scene, camera);
 }
