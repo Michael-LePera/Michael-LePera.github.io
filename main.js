@@ -1,6 +1,7 @@
 import './style.css'
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+import spaceimg from "/assets/space.jpg" 
 
 const scene = new THREE.Scene();
 
@@ -17,7 +18,8 @@ camera.position.setZ(30);
 
 renderer.render( scene, camera );
 
-const spaceTexture = new THREE.TextureLoader().load('space.jpg');
+const spaceTexture = new THREE.TextureLoader().load(spaceimg);
+
 //scene.background = spaceTexture;
 
 const geometry = new THREE.TorusGeometry(100, 3, 16, 100)
@@ -35,7 +37,7 @@ scene.add(torus)
 //}
 
 
-const plgeometry = new THREE.SphereGeometry( window.innerWidth / 3, 128);
+const plgeometry = new THREE.SphereGeometry( window.innerWidth / 12, 128);
 const plmaterial = new THREE.MeshBasicMaterial( {color: 0xFFFFFF, side: THREE.DoubleSide, map: spaceTexture} );
 const sphere = new THREE.Mesh( plgeometry, plmaterial );
 scene.add( sphere );
