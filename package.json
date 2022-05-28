@@ -1,7 +1,9 @@
 {
+  "homepage": "https://michael-lepera.github.io",
   "name": "first-site",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "main": "src/main.js",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
