@@ -107,3 +107,4 @@ function animate(){
 }
 
 animate()
+console.log("yo");
