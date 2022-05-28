@@ -14,13 +14,11 @@ const renderer = new THREE.WebGLRenderer({
 
 renderer.setPixelRatio( window.devicePixelRatio );
 renderer.setSize( window.innerWidth, window.innerHeight );
-camera.position.setZ(30);
+camera.position.setZ(0);
 
 renderer.render( scene, camera );
 
 const spaceTexture = new THREE.TextureLoader().load(spaceimg);
-
-//scene.background = spaceTexture;
 
 const geometry = new THREE.TorusGeometry(100, 3, 16, 100)
 const material = new THREE.MeshStandardMaterial({color: 0xFF6347});
@@ -28,26 +26,32 @@ const torus = new THREE.Mesh(geometry, material);
 
 scene.add(torus)
 
-//function starPlane(){
-//  const geometry = new THREE.PlaneGeometry( window.innerWidth, window.innerHeight );
-//  const material = new THREE.MeshBasicMaterial( {color: 0xFFFFFF, side: THREE.DoubleSide, map: spaceTexture} );
-//  const plane = new THREE.Mesh( geometry, material );
-//  scene.add( plane );
-//  plane.position.set(0, 0, -500);
-//}
-var plgeometry
-var plmaterial
-var sphere
+
+var sphere;
+var plgeometry;
+
 function updateSize() {
-  scene.remove(sphere)
-  plgeometry = new THREE.SphereGeometry( window.innerWidth / 12, 128);
-  plmaterial = new THREE.MeshBasicMaterial( {color: 0xFFFFFF, side: THREE.DoubleSide, map: spaceTexture} );
+  renderer.setSize( window.innerWidth, window.innerHeight );
+  plgeometry = new THREE.SphereGeometry( window.innerWidth / 1, 64);
   sphere = new THREE.Mesh( plgeometry, plmaterial );
-  scene.add( sphere );
-  sphere.position.set(0, 0, 0);
-  sphere.rotateY(Math.PI / 2)
-} 
-updateSize();
+}
+
+
+const parallaxMod = 0.001
+function onMouseMove(event) {
+  sphere.rotation.y = (parallaxMod * (event.clientX - window.innerWidth / 2)) + (Math.PI / 2);
+  sphere.rotation.x = (parallaxMod * (event.clientY - window.innerHeight / 2));
+  console.log(window.innerWidth / 2)
+}
+
+
+
+const plmaterial = new THREE.MeshBasicMaterial( {color: 0xFFFFFF, side: THREE.DoubleSide, map: spaceTexture} );
+plgeometry = new THREE.SphereGeometry( window.innerWidth / 12, 128);
+sphere = new THREE.Mesh( plgeometry, plmaterial );
+scene.add( sphere );
+sphere.position.set(0, 0, 0);
+sphere.rotateY(Math.PI / 2);
 
   
 
@@ -88,15 +92,22 @@ Array(200).fill().forEach(addStar)
 
 function moveCamera() {
   const t = document.body.getBoundingClientRect().top;
-  camera.position.z = t * -0.01;
-  camera.position.x = t * -0.0002;
-  camera.position.y = t * -0.0002;
+  console.log(t)
+  if (t <= 0 ){
+    camera.position.z = t * -0.1;
+    camera.position.x = t * -0.0005;
+    camera.position.y = t * -0.0002;
+  }
+  
+  
+    
+  
 
 }
 
 document.body.onscroll = moveCamera
-
-
+window.addEventListener("resize", updateSize);
+window.addEventListener("mousemove", onMouseMove, false);
 
 function animate(){
   requestAnimationFrame( animate );
@@ -106,16 +117,15 @@ function animate(){
   torus.rotation.z += 0.01;
 
   sphere.rotation.x += 0.000;
-  sphere.rotation.y += 0.000;
-  sphere.rotation.z += 0.000;
+  sphere.rotation.y += 0.0000;
+  sphere.rotation.z += 0.0000;
 
   controls.update();
-
+  //console.log(camera.position.z)
   renderer.render(scene, camera);
 }
 
-//window.addEventListener("resize", () => {console.log("test")});
-window.addEventListener("resize", updateSize)
+
 
 animate()
 console.log("yo");

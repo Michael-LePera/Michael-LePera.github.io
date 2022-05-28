@@ -1,21 +1,54 @@
+
+
+main {
+  width: 100%;
+  height: 100%;
+  padding: 100px;
+  position: absolute;
+
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+}
+
+h1, h2, h3, blockquote {
+  font-family: elevon, sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
 canvas {
   position: fixed;
   top: 0;
   left: 0;
 }
 
-#h1 {
-  width: 100vw;
-  color:  white;
-  z-index: 99;
-  position: absolute;
+  header {
+    background: var(--dark-bg);
+    grid-column: 2 /span 5;
+    font-size: 2rem;
+    padding: 2rem;
+    margin-bottom: var(--spacing);
+  }
+
+
+
+#mainHeading {
+  text-align: center;
   width: 100%;
-  margin: 0px auto;
-  padding: 120px 0px;
+  position: relative;
+  color: white;
   font-family: Arial, Helvetica, sans-serif;
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
 }
+#title {
+  width: 50%;
+  margin: 0% auto;
+  display: inline-block;
+  font-size: xx-large;
+  
+}
+
+
+
 
 #p1 {
   width: 100vw;
