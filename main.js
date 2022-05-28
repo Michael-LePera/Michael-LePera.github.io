@@ -35,14 +35,20 @@ scene.add(torus)
 //  scene.add( plane );
 //  plane.position.set(0, 0, -500);
 //}
+var plgeometry
+var plmaterial
+var sphere
+function updateSize() {
+  scene.remove(sphere)
+  plgeometry = new THREE.SphereGeometry( window.innerWidth / 12, 128);
+  plmaterial = new THREE.MeshBasicMaterial( {color: 0xFFFFFF, side: THREE.DoubleSide, map: spaceTexture} );
+  sphere = new THREE.Mesh( plgeometry, plmaterial );
+  scene.add( sphere );
+  sphere.position.set(0, 0, 0);
+  sphere.rotateY(Math.PI / 2)
+} 
+updateSize();
 
-
-const plgeometry = new THREE.SphereGeometry( window.innerWidth / 12, 128);
-const plmaterial = new THREE.MeshBasicMaterial( {color: 0xFFFFFF, side: THREE.DoubleSide, map: spaceTexture} );
-const sphere = new THREE.Mesh( plgeometry, plmaterial );
-scene.add( sphere );
-sphere.position.set(0, 0, 0);
-sphere.rotateY(Math.PI / 2)
   
 
 const pointLight = new THREE.PointLight(0xFFFFFF);
@@ -107,6 +113,9 @@ function animate(){
 
   renderer.render(scene, camera);
 }
+
+//window.addEventListener("resize", () => {console.log("test")});
+window.addEventListener("resize", updateSize)
 
 animate()
 console.log("yo");
