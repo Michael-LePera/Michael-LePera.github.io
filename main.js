@@ -1,4 +1,4 @@
-import './style.css'
+import './css/main.css'
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import anime from 'animejs/lib/anime.es.js';
@@ -46,7 +46,7 @@ sphere.rotateY(Math.PI / 2);
 
 
 
-const parallaxMod = 0.001
+const parallaxMod = 0.0003
 var mainText = document.getElementById("body");
 function onMouseMove(event) {
   sphere.rotation.y = (parallaxMod * (event.clientX - window.innerWidth / 2)) + (Math.PI / 2);
