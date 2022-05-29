@@ -8,6 +8,25 @@ const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000 );
 //camera.rotateY(0.4)
 
+
+const t = document.body.getBoundingClientRect().top;
+camera.position.setZ(116 + (12 * t)/100);
+console.log(`z = ${camera.position.z}`)
+console.log(`t = ${t}`)
+
+function moveCamera() {
+  const t = document.body.getBoundingClientRect().top;
+  console.log(`t = ${t}`)
+  console.log(`z = ${camera.position.z}`)
+  if (t <= 0  && t >= -2500){
+    camera.position.z = (116 + (12 * t)/500);
+    camera.position.x = t * -0.0005;
+    camera.position.y = t * -0.0002;
+  }
+}
+
+
+
 const renderer = new THREE.WebGLRenderer({
   canvas: document.querySelector('#bg'),
 
@@ -15,7 +34,6 @@ const renderer = new THREE.WebGLRenderer({
 
 renderer.setPixelRatio( window.devicePixelRatio );
 renderer.setSize( window.innerWidth, window.innerHeight );
-camera.position.setZ(0);
 
 renderer.render( scene, camera );
 
@@ -84,21 +102,6 @@ Array(200).fill().forEach(addStar)
 
 
 
-
-function moveCamera() {
-  const t = document.body.getBoundingClientRect().top;
-  console.log(t)
-  if (t <= 0 ){
-    camera.position.z = t * -0.1;
-    camera.position.x = t * -0.0005;
-    camera.position.y = t * -0.0002;
-  }
-  
-  
-    
-  
-
-}
 
 document.body.onscroll = moveCamera
 window.addEventListener("resize", updateSize);
