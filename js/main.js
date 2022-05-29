@@ -20,9 +20,9 @@ renderer.render( scene, camera );
 
 const spaceTexture = new THREE.TextureLoader().load(spaceimg);
 
-const geometry = new THREE.TorusGeometry(100, 3, 16, 100)
-const material = new THREE.MeshStandardMaterial({color: 0xFF6347});
-const torus = new THREE.Mesh(geometry, material);
+const torus_geometry = new THREE.TorusGeometry(100, 3, 16, 100)
+const torus_material = new THREE.MeshStandardMaterial({color: 0xFF6347});
+const torus = new THREE.Mesh(torus_geometry, torus_material);
 
 scene.add(torus)
 
@@ -32,7 +32,7 @@ var plgeometry;
 
 function updateSize() {
   renderer.setSize( window.innerWidth, window.innerHeight );
-  geometry = new THREE.SphereGeometry( window.innerWidth / 1, 64);
+  //geometry = new THREE.SphereGeometry( window.innerWidth / 1, 64);
   sphere = new THREE.Mesh( plgeometry, plmaterial );
 }
 
@@ -46,7 +46,6 @@ sphere.rotateY(Math.PI / 2);
 
 
 const parallaxMod = 0.0003
-var mainText = document.getElementById("body");
 function onMouseMove(event) {
   sphere.rotation.y = (parallaxMod * (event.clientX - window.innerWidth / 2)) + (Math.PI / 2);
   sphere.rotation.x = (parallaxMod * (event.clientY - window.innerHeight / 2));
@@ -62,11 +61,6 @@ scene.add(pointLight, ambientLight)
 //const lightHelper = new THREE.PointLightHelper(pointLight)
 //const gridHelper = new THREE.GridHelper(200, 50);
 //scene.add(lightHelper, gridHelper)
-
-
-
-
-
 
 //const controls = new OrbitControls(camera, renderer.domElement);
 
