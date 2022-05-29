@@ -19,7 +19,7 @@ function moveCamera() {
   console.log(`t = ${t}`)
   console.log(`z = ${camera.position.z}`)
   if (t <= 0  && t >= -2500){
-    camera.position.z = (116 + (12 * t)/500);
+    camera.position.z = (116 + (t)/20);
     camera.position.x = t * -0.0005;
     camera.position.y = t * -0.0002;
   }
@@ -62,6 +62,16 @@ scene.add( sphere );
 sphere.position.set(0, 0, 0);
 sphere.rotateY(Math.PI / 2);
 
+
+function createPlanet() {
+  const planet_geo = new THREE.SphereGeometry(4, 128)
+  const planet_mat = new THREE.MeshStandardMaterial({color: 0xFFF000, side: THREE.DoubleSide})
+  const planet = new THREE.Mesh( planet_geo, planet_mat)
+
+  scene.add(planet);
+  planet.position.set(0, 0, -100)
+}
+createPlanet()
 
 
 const parallaxMod = 0.0003
@@ -111,9 +121,9 @@ var intens_up_or_down = 0
 function animate(){
   requestAnimationFrame( animate );
 
-  torus.rotation.x += 0.05;
-  torus.rotation.y += 0.01;
-  torus.rotation.z += 0.01;
+  torus.rotation.x += 0.00;
+  torus.rotation.y += 0.00;
+  torus.rotation.z += 0.00;
 
   sphere.rotation.x += 0.000;
   sphere.rotation.y += 0.0000;
