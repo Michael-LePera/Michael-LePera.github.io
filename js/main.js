@@ -6,6 +6,7 @@ import spaceimg from "/assets/space.jpg"
 const scene = new THREE.Scene();
 
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+//camera.rotateY(0.4)
 
 const renderer = new THREE.WebGLRenderer({
   canvas: document.querySelector('#bg'),
@@ -47,8 +48,10 @@ sphere.rotateY(Math.PI / 2);
 
 const parallaxMod = 0.0003
 function onMouseMove(event) {
-  sphere.rotation.y = (parallaxMod * (event.clientX - window.innerWidth / 2)) + (Math.PI / 2);
-  sphere.rotation.x = (parallaxMod * (event.clientY - window.innerHeight / 2));
+  //sphere.rotation.y = (parallaxMod * (event.clientX - window.innerWidth / 2)) + (Math.PI / 2);
+  //sphere.rotation.x = (parallaxMod * (event.clientY - window.innerHeight / 2));
+  camera.rotation.y =  - (parallaxMod * (event.clientX - window.innerWidth / 2));
+  camera.rotation.x = - (parallaxMod * (event.clientY - window.innerHeight / 2));
 
 }
 
