@@ -37,7 +37,7 @@ canvas {
 }
 
 .main .first {
-  color: white;
+  color: #ffffff;
   position: relative;
   -ms-grid-column: 1;
   -ms-grid-column-span: 2;

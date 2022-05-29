@@ -1,5 +1,5 @@
 $primary-color: #272727;
-$accent-color: #ff652f;
+$accent-color: #259dff;
 $text-color: #ffffff;
 $font-weights: (
     "regular":400,
@@ -50,7 +50,7 @@ canvas {
   z-index:1;
 
   .first {
-    color: white;
+    color: $text-color;
     position: relative;
     grid-column: 1 /span 2;
 

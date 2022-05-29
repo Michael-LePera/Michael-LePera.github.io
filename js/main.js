@@ -1,7 +1,6 @@
-import './css/main.css'
+import '../css/main.css'
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
-import anime from 'animejs/lib/anime.es.js';
 import spaceimg from "/assets/space.jpg" 
 
 const scene = new THREE.Scene();
@@ -37,7 +36,7 @@ function updateSize() {
   sphere = new THREE.Mesh( plgeometry, plmaterial );
 }
 
-const plmaterial = new THREE.MeshBasicMaterial( {color: 0xFFFFFF, side: THREE.DoubleSide, map: spaceTexture} );
+const plmaterial = new THREE.MeshStandardMaterial( {color: 0xFFFFFF, side: THREE.DoubleSide, map: spaceTexture} );
 plgeometry = new THREE.SphereGeometry( window.innerWidth / 12, 128);
 sphere = new THREE.Mesh( plgeometry, plmaterial );
 scene.add( sphere );
@@ -54,8 +53,8 @@ function onMouseMove(event) {
 
 }
 
-const pointLight = new THREE.PointLight(0xFFFFFF);
-pointLight.position.set(5, 5, 5)
+const pointLight = new THREE.PointLight(0xFFFFFF, 0);
+pointLight.position.set(0, 0, 0)
 
 const ambientLight = new THREE.AmbientLight(0xFFFFFF);
 scene.add(pointLight, ambientLight)
@@ -108,6 +107,7 @@ document.body.onscroll = moveCamera
 window.addEventListener("resize", updateSize);
 window.addEventListener("mousemove", onMouseMove, false);
 
+var intens_up_or_down = 0
 function animate(){
   requestAnimationFrame( animate );
 
@@ -118,6 +118,21 @@ function animate(){
   sphere.rotation.x += 0.000;
   sphere.rotation.y += 0.0000;
   sphere.rotation.z += 0.0000;
+
+  if (intens_up_or_down == 0) {
+    if (pointLight.intensity <= 0.2){
+      pointLight.intensity += 0.0001
+    } else{
+      intens_up_or_down = 1
+    }
+  } else {
+    if (pointLight.intensity >= 0){
+      pointLight.intensity -= 0.0001
+    } else{
+      intens_up_or_down = 0
+    }
+  }
+
 
   //controls.update();
   //console.log(camera.position.z)
